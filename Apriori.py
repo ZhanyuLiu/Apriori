@@ -53,7 +53,7 @@ def aprioriGen(Lk, k):#Lk是里面包含k个项集的频繁项集，k是项的�
       L2.sort()
       if L1 == L2:
         Ck.append(Lk[i] | Lk[j])
-  print("Ck", Ck)
+  # print("Ck", Ck)
   return Ck
 
 #函数：根据数据集和支持度，返回所有的频繁项集，以及所有项集的支持度
@@ -64,19 +64,19 @@ def apriori(D, minSupport = 0.5):
   k = 2
   while (len(L[k-2]) > 0):
     Ck = aprioriGen(L[k-2],k)
-#         print("Ck:",Ck)
+    print("Ck:",Ck)
     Lk, supK = scanD(D, Ck, minSupport)
     supportData.update(supK)
-#         print("Lk:",Lk)
+    print("Lk:",Lk)
     L.append(Lk)
     k += 1
   return L, supportData
 
 def main():
-  dataSet = [[1, 3, 4], [2, 3, 5], [1, 2, 3, 5], [2, 5], [3, 5, 2]]
-  L, supportData = apriori(dataSet, minSupport=0.5)
-  print("频繁项集：", L)
-  print("支持度：", supportData)
+  dataSet = [[1, 3, 4], [2, 3, 5], [1, 2, 3, 5], [2, 5], [3, 5, 2], [2, 3, 1], [2, 3, 4]]
+  L, supportData = apriori(dataSet, minSupport=0.2)
+  print("频繁项集：\n", L)
+  print("支持度：\n", supportData)
 
 
 
